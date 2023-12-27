@@ -1,0 +1,58 @@
+<%- include('./partials/header.ejs')  %>
+  <form id="profileUpload" action="/uploadprofile" method="post" enctype="multipart/form-data">
+    <input type="file" name="profileimage" accept="image/*">
+  </form>
+  <div class="profile-container">
+    <div class="cardpro">
+      <div class="profile-picture">
+        <img onerror="this.src='https://placehold.co/300x300'" src="/images/profiles/<%=user.dp?user.dp:''%>"
+          alt="Profile Picture">
+        <div class="pencil-icon" id="pencileProfile">
+          <i class="fas fa-pencil-alt"></i>
+        </div>
+      </div>
+      <h2 class="name">
+        <%= user.fullname ? user.fullname : 'Name' %>
+      </h2>
+      <h3 class="username">@<%= user.username ? user.username : 'username' %>
+      </h3>
+
+      <a href="/logout" class="button">Logout</a>
+
+      <button id="openModal" class="button">Create Post</button>
+    </div>
+  </div>
+  <section>
+    <div class="card-container">
+      <% if (user.posts.length>0) { %>
+        <div class="card">
+          <img src="/images/posts/<%=user.posts.length>0?user.posts[0].image:'' %>" alt="All Post">
+          <a href="/showpost/<%=user._id%>">
+            <h1>All Post</h1>
+          </a>
+        </div>
+      <% } %>
+    </div>
+  </section>
+  <div class="post-modal" id="postModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Create a Post</h2>
+      <form id="postForm" action="/uploadpost" enctype="multipart/form-data" method="post">
+        <div class="fileuploader">
+          <div class="input-div">
+            <input type="file" class="input" name="imagefile" id="PostImage">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon"><polyline points="16 16 12 12 8 16"></polyline><line y2="21" x2="12" y1="12" x1="12"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+          </div>
+        </div>
+        <label for="postImage">Post Title:</label>
+        <input type="text" id="postImage" name="title" required>
+        <label for="postImage">Redirect Url:</label>
+        <input type="url" id="postImage" name="rediercturl">
+        <label for="postDescription">Description:</label>
+        <textarea id="postDescription" name="description" rows="4"></textarea>
+        <button type="submit" class="button">Post</button>
+      </form>
+    </div>
+  </div>
+  <%- include('./partials/footer.ejs')  %>

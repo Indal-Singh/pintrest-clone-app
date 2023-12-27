@@ -1,0 +1,27 @@
+<%- include('./partials/header.ejs') %>
+        <div class="container">
+          <% posts.forEach(post => { %> 
+            <div class="window">
+              <img class="foto" src="/images/posts/<%=post.image%>">
+              <p class="content">Follow me</p>
+              <img class="user" src="/images/profiles/<%=post.user.dp%>">
+              <a class="username"><%=post.user.username%></a>
+              <div class="hover-zone">
+                <% if(user.isUserLoggedIn) {%>
+                <div class="top-bar">
+                  <p>Profile ⌵</p>
+                  <a>Save</a>
+                </div>
+                <% } %>
+                <div class="bottom-bar">
+                  <a href="<%= post.redirecturl ? post.redirecturl : '' %>">↗ <%= post.redirecturl ? new URL(post.redirecturl).hostname : '' %></a>
+                  <div class="radius-ico">
+                    <img src="https://cdn3.iconfinder.com/data/icons/iconset-1-1/24/icon_set_outlinder-10-256.png">
+                    <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-more-256.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+<%- include('./partials/footer.ejs') %>        
