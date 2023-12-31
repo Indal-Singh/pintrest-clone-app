@@ -20,7 +20,7 @@ This is a Pinterest clone app built with Node.js, Express, and EJS.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/pinterest-clone.git
+   git clone https://github.com/indal-singh/pintrest-clone-app.git
 
 2. Navigate to the project directory:
 
